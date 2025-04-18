@@ -1,0 +1,95 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - red-educativa
+
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - red-educativa
+
+  config-server:
+    build: ./configserver
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-server
+    networks:
+      - red-educativa
+
+  usuarios-servicio:
+    build: ./usuarios-servicio
+    container_name: usuarios-servicio
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    depends_on:
+      - config-server
+      - eureka-server
+      - mongo
+    networks:
+      - red-educativa
+
+  asignaturas-servicio:
+    build: ./asignaturas-servicio
+    container_name: asignaturas-servicio
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    depends_on:
+      - config-server
+      - eureka-server
+      - mongo
+    networks:
+      - red-educativa
+
+  matriculas-servicio:
+    build: ./matriculas-servicio
+    container_name: matriculas-servicio
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    depends_on:
+      - usuarios-servicio
+      - asignaturas-servicio
+      - config-server
+      - eureka-server
+      - mongo
+    networks:
+      - red-educativa
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - red-educativa
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - red-educativa
+
+networks:
+  red-educativa:
+    driver: bridge

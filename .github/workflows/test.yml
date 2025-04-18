@@ -3,7 +3,7 @@ name: Prueba usuarios-servicio
 on:
   push:
     branches:
-      - main  # ← antes decía "principal"
+      - principal
 
 jobs:
   build:
@@ -20,6 +20,5 @@ jobs:
           java-version: '17'
 
       - name: Compilar con Maven
-        working-directory: usuarios-servicio
+        working-directory: sistema-carlos-devops/usuarios-servicio
         run: mvn clean install
-

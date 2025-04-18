@@ -21,10 +21,10 @@ jobs:
         distribution: 'temurin'
 
     - name: Pruebas - usuarios-servicio
-      run: mvn -B test --file usuarios-servicio/usuarios-servicio/usuarios-servicio/usuarios-servicio/pom.xml
+      run: mvn -B test --file usuarios-servicio/pom.xml
 
     - name: Pruebas - asignaturas-servicio
-      run: mvn -B test --file asignaturas-servicio/asignaturas-servicio/asignaturas-servicio/pom.xml
+      run: mvn -B test --file asignaturas-servicio/pom.xml
 
     - name: Pruebas - matriculas-servicio
-      run: mvn -B test --file matriculas-servicio/matriculas-servicio/matriculas-servicio/pom.xml
+      run: mvn -B test --file matriculas-servicio/pom.xml

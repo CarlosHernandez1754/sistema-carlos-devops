@@ -1,0 +1,30 @@
+name: CI - Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build and test each microservice
+        run: |
+          for dir in usuarios-servicio asignaturas-servicio matriculas-servicio; do
+            echo "Testing $dir"
+            cd $dir || exit 1
+            mvn clean test
+            cd ..
+          done

@@ -1,4 +1,5 @@
-FROM openjdk:17
-VOLUME /tmp
-COPY target/asignaturas-servicio-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY target/matriculas-servicio-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8083
+ENTRYPOINT ["java", "-jar", "app.jar"]

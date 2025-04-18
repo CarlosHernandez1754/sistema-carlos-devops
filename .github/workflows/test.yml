@@ -1,24 +1,25 @@
-name: Prueba usuarios-servicio
+name: Run Tests
 
 on:
   push:
-    branches:
-      - principal
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar el repositorio
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Configurar Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
 
-      - name: Compilar con Maven
-        working-directory: sistema-carlos-devops/usuarios-servicio
-        run: mvn clean install
+    - name: Build with Maven
+      run: mvn -B test --file pom.xml
+

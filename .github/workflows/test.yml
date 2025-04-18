@@ -3,7 +3,7 @@ name: Prueba usuarios-servicio
 on:
   push:
     branches:
-      - principal
+      - main  # ← antes decía "principal"
 
 jobs:
   build:
@@ -22,3 +22,4 @@ jobs:
       - name: Compilar con Maven
         working-directory: usuarios-servicio
         run: mvn clean install
+

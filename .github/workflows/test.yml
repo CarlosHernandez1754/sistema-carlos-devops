@@ -23,12 +23,15 @@ jobs:
       - name: Build and test each microservice
         run: |
           for dir in usuarios-servicio asignaturas-servicio matriculas-servicio; do
+            echo "============================="
+            echo "Building and testing $dir"
+            echo "============================="
             if [ -f "$dir/pom.xml" ]; then
-              echo "🔧 Building and testing $dir"
               cd $dir
-              mvn clean test
+              mvn clean test || exit 1
               cd ..
             else
-              echo "⚠️ Skipping $dir - pom.xml not found"
+              echo "No pom.xml found in $dir. Skipping..."
+              exit 1
             fi
           done

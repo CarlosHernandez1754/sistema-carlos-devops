@@ -1,4 +1,4 @@
-name: Ejecutar pruebas
+name: Ejecutar Pruebas Automatizadas
 
 on:
   push:
@@ -11,23 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v3
+    - name: Clonar el repositorio
+      uses: actions/checkout@v3
 
-      - name: Configurar JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+    - name: Configurar JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
 
-      - name: Ejecutar pruebas con Maven
-        run: mvn -B test --file usuarios-servicio/pom.xml
+    - name: Pruebas - usuarios-servicio
+      run: mvn -B test --file usuarios-servicio/usuarios-servicio/usuarios-servicio/usuarios-servicio/pom.xml
 
-      - name: Test usuarios-servicio
-        run: mvn -B test --file usuarios-servicio/pom.xml
+    - name: Pruebas - asignaturas-servicio
+      run: mvn -B test --file asignaturas-servicio/asignaturas-servicio/asignaturas-servicio/pom.xml
 
-      - name: Test asignaturas-servicio
-        run: mvn -B test --file asignaturas-servicio/pom.xml
+    - name: Pruebas - matriculas-servicio
+      run: mvn -B test --file matriculas-servicio/matriculas-servicio/matriculas-servicio/pom.xml
 
-      - name: Test matriculas-servicio
-        run: mvn -B test --file matriculas-servicio/pom.xml

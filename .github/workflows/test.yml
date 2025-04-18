@@ -23,3 +23,11 @@ jobs:
       - name: Ejecutar pruebas con Maven
         run: mvn -B test --file usuarios-servicio/pom.xml
 
+      - name: Test usuarios-servicio
+        run: mvn -B test --file usuarios-servicio/pom.xml
+
+      - name: Test asignaturas-servicio
+        run: mvn -B test --file asignaturas-servicio/pom.xml
+
+      - name: Test matriculas-servicio
+        run: mvn -B test --file matriculas-servicio/pom.xml

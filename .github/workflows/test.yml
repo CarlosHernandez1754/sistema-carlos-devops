@@ -1,17 +1,13 @@
-name: Test Pipeline
+name: Test usuarios-servicio
 
 on:
   push:
     branches:
       - main
       - master
-  pull_request:
-    branches:
-      - main
-      - master
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +20,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Ejecutar tests
+      - name: Ejecutar mvn test en usuarios-servicio
+        working-directory: usuarios-servicio
         run: mvn test

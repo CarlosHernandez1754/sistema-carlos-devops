@@ -1,0 +1,30 @@
+name: CI - Pruebas de microservicios
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Ejecutar pruebas - usuarios-servicio
+      run: mvn test --file usuarios-servicio/pom.xml
+
+    - name: Ejecutar pruebas - asignaturas-servicio
+      run: mvn test --file asignaturas-servicio/pom.xml
+
+    - name: Ejecutar pruebas - matriculas-servicio
+      run: mvn test --file matriculas-servicio/pom.xml

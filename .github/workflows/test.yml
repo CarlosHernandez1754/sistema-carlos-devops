@@ -30,5 +30,13 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Ejecutar pruebas por microservicio
-  run: mvn test
+        run: |
+          for d in */ ; do
+            if [ -f "$d/pom.xml" ]; then
+              echo "Ejecutando pruebas en $d"
+              cd "$d"
+              mvn test || exit 1
+              cd ..
+            fi
+          done
 

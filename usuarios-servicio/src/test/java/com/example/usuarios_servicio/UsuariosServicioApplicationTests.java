@@ -10,7 +10,7 @@ import org.springframework.http.*;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UsuariosServicioApplicationTests {
 

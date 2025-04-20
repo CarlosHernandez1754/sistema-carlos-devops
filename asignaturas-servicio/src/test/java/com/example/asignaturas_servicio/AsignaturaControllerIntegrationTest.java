@@ -1,6 +1,6 @@
 package com.example.asignaturas_servicio;
 
-
+import org.springframework.test.context.ActiveProfiles;
 import com.example.asignaturas_servicio.model.Asignatura;
 import com.example.asignaturas_servicio.repository.AsignaturaRepository;
 import org.junit.jupiter.api.BeforeEach;

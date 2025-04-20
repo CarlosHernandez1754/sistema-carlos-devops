@@ -1,5 +1,6 @@
 package com.example.usuarios_servicio;
 
+import org.springframework.test.context.ActiveProfiles;
 import com.example.usuarios_servicio.model.Usuario;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

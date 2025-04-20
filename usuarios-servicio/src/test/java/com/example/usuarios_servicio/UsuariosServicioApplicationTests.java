@@ -1,6 +1,6 @@
 package com.example.usuarios_servicio;
 
-import org.springframework.test.context.ActiveProfiles;
+
 import com.example.usuarios_servicio.model.Usuario;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.http.*;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@ActiveProfiles("test")
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UsuariosServicioApplicationTests {
 

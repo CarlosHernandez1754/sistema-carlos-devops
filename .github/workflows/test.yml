@@ -8,11 +8,10 @@ on:
 
 jobs:
   run-tests:
-    name: Ejecutar pruebas con Maven
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar el repositorio
+      - name: Checkout del repositorio
         uses: actions/checkout@v3
 
       - name: Configurar Java 17
@@ -30,5 +29,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Ejecutar pruebas unitarias e integración
-        run: mvn test
+      - name: Ejecutar pruebas por microservicio
+        run: |
+          for d in */ ; do
+            if [ -f "$d/pom.xml" ]; then
+              echo "Ejecutando pruebas en $d"
+              cd "$d"
+              mvn test || exit 1
+              cd ..
+            fi
+          done

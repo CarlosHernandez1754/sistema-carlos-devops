@@ -1,5 +1,5 @@
 package com.example.matriculas_servicio;
-
+import org.springframework.test.context.ActiveProfiles;
 import com.example.matriculas_servicio.model.Matricula;
 import com.example.matriculas_servicio.repository.MatriculaRepository;
 import org.junit.jupiter.api.BeforeEach;

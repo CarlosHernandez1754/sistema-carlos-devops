@@ -1,5 +1,6 @@
 package com.example.usuarios_servicio;
 
+import org.springframework.test.context.ActiveProfiles;
 import com.example.usuarios_servicio.model.Usuario;
 import com.example.usuarios_servicio.repository.UsuarioRepository;
 import com.example.usuarios_servicio.security.JwtUtil;
